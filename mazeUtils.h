@@ -26,4 +26,5 @@ Maze* loadMap(string filename);
  */
 string renderAnswer(Maze* maze, vector<Position*> solution);
 
+
 #endif

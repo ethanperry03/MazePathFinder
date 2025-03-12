@@ -1,6 +1,6 @@
 #include "maze.h"
-
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 
@@ -22,7 +22,7 @@ Maze* loadMap(string filename) {
   try {
     string line;
     for (int i = 0; i < height; i++) {
-      file >> line;
+        file >> line;
       if (file.fail() || line.length() != width) {
         throw runtime_error("Error reading map");
       }
@@ -44,6 +44,7 @@ Maze* loadMap(string filename) {
   }
   return maze;
 }
+
 
 string renderAnswer(Maze* maze, vector<Position*> solution) {
   stringstream file;

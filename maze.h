@@ -65,6 +65,11 @@ public:
    */
   vector<Position*> solveDepthFirst();
 
+
+
+  void displayMap();
+  void displayNeighbors(int, int);
+
 protected:
   /**
    * A utility method which creates and returns a vector of the valid neighbors
@@ -91,7 +96,8 @@ protected:
       objects representing the maze. */
   Position*** positions;
 
-  // TODO: put any other fields you need here
+  int width;
+  int height;
 
 };
 

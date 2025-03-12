@@ -8,18 +8,23 @@
 using namespace std;
 
 int main() {
-  cout << "Welcome to The A-Maze-ing Race." << endl;
-  string map;
-  cout << "where is your maze file? ";
-  cin >> map;
+//  cout << "Welcome to The A-Maze-ing Race." << endl;
+//  string map;
+//  cout << "where is your maze file? ";
+//  cin >> map;
+//
+//  string search;
+//  cout << "Which search algorithm to use (BFS or DFS)? ";
+//  cin >> search;
+//
+//  string outfile;
+//  cout << "What is the name of the output file?";
+//  cin >> outfile;
 
-  string search;
-  cout << "Which search algorithm to use (BFS or DFS)? ";
-  cin >> search;
-  
-  string outfile;
-  cout << "What is the name of the output file?";
-  cin >> outfile;
+    // TODO: implement CTOR and DTOR, then test this code
+    Maze* map = loadMap("../maps/example1.map");
+    map->displayMap();
+
   
   // TODO: 1. write code to read in the map and handle potential errors 
   //       2. display the map to the terminal 
