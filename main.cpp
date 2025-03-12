@@ -7,25 +7,53 @@
 
 using namespace std;
 
+string inputSearchAlg(string& input) {
+    cin.get();
+    while(input != "BFS" && input != "DFS") {
+        cout << "Invalid input: try 'BFS' or 'DFS': ";
+        getline(cin, input);
+    }
+
+    return input;
+}
+
 int main() {
-//  cout << "Welcome to The A-Maze-ing Race." << endl;
-//  string map;
-//  cout << "where is your maze file? ";
-//  cin >> map;
-//
-//  string search;
-//  cout << "Which search algorithm to use (BFS or DFS)? ";
-//  cin >> search;
-//
-//  string outfile;
-//  cout << "What is the name of the output file?";
-//  cin >> outfile;
+  cout << "Welcome to The A-Maze-ing Race." << endl;
+  string file;
+  cout << "where is your maze file? ";
+  cin >> file;
+//    string file = "example5.map";
+  // TODO: remove the file extension line in the mazeUtil
+  Maze* map = loadMap(file);
 
-    // TODO: implement CTOR and DTOR, then test this code
-    Maze* map = loadMap("../maps/example1.map");
-    map->displayMap();
+  string search;
+  cout << "Which search algorithm to use (BFS or DFS)? ";
+  cin >> search;
+  search = inputSearchAlg(search);
 
-  
+  string outfile;
+  cout << "What is the name of the output file?";
+  cin >> outfile;
+
+  cout << "Loading " << file << "..." << endl;
+  map->displayMap();
+
+  vector <Position*> solution;
+  if(search == "BFS") {
+      cout << endl << "Breadth First Searching..." << endl;
+      solution = map->solveBreadthFirst();
+  }
+  else if (search == "DFS") {
+      cout << endl << "Depth First Searching..." << endl;
+      solution = map->solveDepthFirst();
+  }
+  else {
+      cout << "Invalid search input" << endl;
+  }
+
+  cout << renderAnswer(map, solution) << endl;
+
+
   // TODO: 1. write code to read in the map and handle potential errors 
   //       2. display the map to the terminal 
   //       3. call appropriate functions to solve the maze 

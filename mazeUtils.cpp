@@ -7,6 +7,7 @@
 using namespace std;
 
 Maze* loadMap(string filename) {
+    filename = "../maps/" + filename;
   ifstream file(filename.c_str());
   if (file.fail()) {
     throw runtime_error("Could not open file: " + filename);

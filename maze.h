@@ -3,8 +3,10 @@
 
 #include "position.h"
 #include <vector>
+#include <unordered_map>
 
 using std::vector;
+using namespace std;
 
 class Maze {
 public:
@@ -95,6 +97,8 @@ protected:
   /** A dynamically-allocated two-dimenstional array of pointers to Position
       objects representing the maze. */
   Position*** positions;
+
+  vector<Position*> buildPath(unordered_map<string, Position*>&, Position*);
 
   int width;
   int height;

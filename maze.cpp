@@ -4,6 +4,7 @@
 /* STL libraries needed */
 #include <stack>
 #include <queue>
+#include <unordered_map>
 #include <vector>
 
 /* library for reverse function */
@@ -64,7 +65,60 @@ vector<Position*> Maze::solveBreadthFirst() {
    * the associated value should be a pointer to the Position from which
    * you saw the key
    */
-  throw runtime_error("Not yet implemented: Maze::solveBreadthFirst");
+
+  // declare unordered map to hash visited nodes
+  unordered_map<string, Position*> visited;
+  // queue of nodes to be visited
+  queue<Position*> toBeVisited;
+  // vector storing the path to be taken
+  vector<Position*> path;
+
+  //  mark starting node (0,0) as visited in the dict and make value itself
+  visited.insert({positions[0][0]->to_string(), positions[0][0]});
+
+  //  add start to the queue of to be visited
+  toBeVisited.push(positions[0][0]);
+
+  // declare the current node Position variable
+  Position* curr;
+  // store the destination position
+  Position* dest = positions[this->height-1][this->width-1];
+
+  // vector of neighbors of curr
+  vector<Position*> neighbors;
+
+  // string storing the to_string of position
+  string key;
+
+  //  while queue is not empty
+  while(!toBeVisited.empty()) {
+      //curr = queue.enqueue
+      curr = toBeVisited.front();
+      toBeVisited.pop();
+      // if curr == destination (w, h)
+      if(curr->to_string() == dest->to_string()) {
+          // reverse built list of prev pointers
+          path = buildPath(visited, dest);
+          // return that path
+          return path;
+      }
+      else {
+          // get all of the neighbors of curr
+          neighbors = getNeighbors(curr);
+          for(Position* neighbor: neighbors) {
+              key = neighbor->to_string();
+              // if neighbor has not been visited before
+              if(visited.find(key) == visited.end()) {
+                  // insert neighbor into dict and make curr as it's previous
+                  visited.insert({key, curr});
+                  // add the neighbor to the queue
+                  toBeVisited.push(neighbor);
+              }
+          }
+      }
+  }
+  // return empty vector if no path is found
+  return vector<Position*>();
 }
 
 vector<Position*> Maze::solveDepthFirst() {
@@ -73,7 +127,60 @@ vector<Position*> Maze::solveDepthFirst() {
    * the associated value should be a pointer to the Position from which
    * you saw the key
    */
-  throw runtime_error("Not yet implemented: Maze::solveDepthFirst");
+
+    // declare unordered map to hash visited nodes
+    unordered_map<string, Position*> visited;
+    // queue of nodes to be visited
+    stack<Position*> toBeVisited;
+    // vector storing the path to be taken
+    vector<Position*> path;
+
+    //  mark starting node (0,0) as visited in the dict and make value itself
+    visited.insert({positions[0][0]->to_string(), positions[0][0]});
+
+    //  add start to the queue of to be visited
+    toBeVisited.push(positions[0][0]);
+
+    // declare the current node Position variable
+    Position* curr;
+    // store the destination position
+    Position* dest = positions[this->height-1][this->width-1];
+
+    // vector of neighbors of curr
+    vector<Position*> neighbors;
+
+    // string storing the to_string of position
+    string key;
+
+    //  while queue is not empty
+    while(!toBeVisited.empty()) {
+        //curr = queue.enqueue
+        curr = toBeVisited.top();
+        toBeVisited.pop();
+        // if curr == destination (w, h)
+        if(curr->to_string() == dest->to_string()) {
+            // reverse built list of prev pointers
+            path = buildPath(visited, dest);
+            // return that path
+            return path;
+        }
+        else {
+            // get all of the neighbors of curr
+            neighbors = getNeighbors(curr);
+            for(Position* neighbor: neighbors) {
+                key = neighbor->to_string();
+                // if neighbor has not been visited before
+                if(visited.find(key) == visited.end()) {
+                    // insert neighbor into dict and make curr as it's previous
+                    visited.insert({key, curr});
+                    // add the neighbor to the queue
+                    toBeVisited.push(neighbor);
+                }
+            }
+        }
+    }
+    // return empty vector if no path is found
+    return vector<Position*>();
 }
 
 vector<Position*> Maze::getNeighbors(Position* position) {
@@ -110,16 +217,32 @@ void Maze::displayNeighbors(int x, int y) {
 }
 
 void Maze::displayMap() {
+    cout << this->width << " " << this->height << endl;
     for(int i = 0; i < this->height; i++) {
         for(int j = 0; j < this->width; j++) {
-            cout << "(" << j << ", " << i << ") ";
             if (positions[i][j]->isWall()) {
                 cout << "#";
             } else {
                 cout << ".";
             }
-            cout << endl;
         }
         cout << endl;
     }
+}
+
+vector<Position*> Maze::buildPath(unordered_map<std::string, Position *>& visited, Position* dest) {
+    vector<Position*> path;
+    Position* curr = dest;
+
+    while(curr != visited[curr->to_string()]){
+        // push the current position onto the vector
+        path.push_back(curr);
+        // update curr to point to the previous position from the dict
+        curr = visited[curr->to_string()];
+    }
+    path.push_back(curr);
+
+    // flip the path to go from start to end
+    reverse(path.begin(), path.end());
+    return path;
 }
