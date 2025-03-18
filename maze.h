@@ -67,10 +67,22 @@ public:
    */
   vector<Position*> solveDepthFirst();
 
-
-
+  /**
+   * @brief Display the maze as a grid to the console
+   *        Using '#' for walls and '.' for paths
+   */
   void displayMap();
+
+  /**
+   * @brief Display all neighbors of a position to console
+   * @param x The x-coordinate (column) of the position
+   * @param y The y-coordinate (row) of the position
+   */
   void displayNeighbors(int, int);
+
+  /**
+   * @brief Display path length and number of nodes visited statistics
+   */
   void displayStats();
 
 protected:
@@ -99,11 +111,20 @@ protected:
       objects representing the maze. */
   Position*** positions;
 
+  /**
+   * @brief Construct a path from start to destination using visited positions
+   * @param visited An unordered map with position strings as keys and previous positions as values
+   * @param dest Pointer to the destination Position
+   * @return A vector of Position pointers representing the path from start to destination
+   */
   vector<Position*> buildPath(unordered_map<string, Position*>&, Position*);
 
+  /** The width and height of this maze. */
   int width;
   int height;
+  /** The number of nodes visited during the search. */
   int nodesVisited;
+  /** The length of the path found by the search. */
   int pathLength;
 
 };

@@ -7,13 +7,13 @@
 
 using namespace std;
 
+
 string inputSearchAlg(string& input) {
     cin.get();
     while(input != "BFS" && input != "DFS") {
         cout << "Invalid input: try 'BFS' or 'DFS': ";
         getline(cin, input);
     }
-
     return input;
 }
 
@@ -54,14 +54,5 @@ int main() {
   cout << renderAnswer(map, solution) << endl;
   map->displayStats();
 
-
-  // TODO: 1. write code to read in the map and handle potential errors 
-  //       2. display the map to the terminal 
-  //       3. call appropriate functions to solve the maze 
-  //       4. display the solution path to the terminal 
-  //       5. write the solution to the output file.
-  //       4. output the path length and # of visited nodes
-
-  // TODO: test a bit more, add stats to bottom output, fix input loop with new line, format output more
   return 0;
 }

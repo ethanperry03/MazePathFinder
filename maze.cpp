@@ -62,12 +62,6 @@ void Maze::setWall(int x, int y) {
 }
 
 vector<Position*> Maze::solveBreadthFirst() {
-  /* you will need an unordered_map to store the previous of each position */
-  /* the keys for this map are the to_string of a position object
-   * the associated value should be a pointer to the Position from which
-   * you saw the key
-   */
-
   // declare unordered map to hash visited nodes
   unordered_map<string, Position*> visited;
   // queue of nodes to be visited
@@ -126,12 +120,6 @@ vector<Position*> Maze::solveBreadthFirst() {
 }
 
 vector<Position*> Maze::solveDepthFirst() {
-  /* you will need an unordered_map to store the previous of each position */
-  /* the keys for this map are the to_string of a position object
-   * the associated value should be a pointer to the Position from which
-   * you saw the key
-   */
-
     // declare unordered map to hash visited nodes
     unordered_map<string, Position*> visited;
     // queue of nodes to be visited
@@ -189,6 +177,25 @@ vector<Position*> Maze::solveDepthFirst() {
     return vector<Position*>();
 }
 
+vector<Position*> Maze::buildPath(unordered_map<std::string, Position *>& visited, Position* dest) {
+    vector<Position*> path;
+    Position* curr = dest;
+
+    while(curr != visited[curr->to_string()]){
+        // push the current position onto the vector
+        path.push_back(curr);
+        // update curr to point to the previous position from the dict
+        curr = visited[curr->to_string()];
+        // increment path length
+        this->pathLength++;
+    }
+    path.push_back(curr);
+
+    // flip the path to go from start to end
+    reverse(path.begin(), path.end());
+    return path;
+}
+
 vector<Position*> Maze::getNeighbors(Position* position) {
     vector<Position*> neighbors;
     int x = position->getX();
@@ -239,23 +246,4 @@ void Maze::displayMap() {
 void Maze::displayStats() {
     cout << "Path Length: " << this->pathLength << endl;
     cout << "# of Nodes Visited: " << this->nodesVisited << endl;
-}
-
-vector<Position*> Maze::buildPath(unordered_map<std::string, Position *>& visited, Position* dest) {
-    vector<Position*> path;
-    Position* curr = dest;
-
-    while(curr != visited[curr->to_string()]){
-        // push the current position onto the vector
-        path.push_back(curr);
-        // update curr to point to the previous position from the dict
-        curr = visited[curr->to_string()];
-        // increment path length
-        this->pathLength++;
-    }
-    path.push_back(curr);
-
-    // flip the path to go from start to end
-    reverse(path.begin(), path.end());
-    return path;
 }
