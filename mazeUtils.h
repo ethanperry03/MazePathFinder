@@ -27,4 +27,6 @@ Maze* loadMap(string filename);
 string renderAnswer(Maze* maze, vector<Position*> solution);
 
 
+void writeOutputToFile(const string&, const string&);
+
 #endif

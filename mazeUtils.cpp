@@ -7,7 +7,6 @@
 using namespace std;
 
 Maze* loadMap(string filename) {
-    filename = "../maps/" + filename;
   ifstream file(filename.c_str());
   if (file.fail()) {
     throw runtime_error("Could not open file: " + filename);
@@ -23,7 +22,7 @@ Maze* loadMap(string filename) {
   try {
     string line;
     for (int i = 0; i < height; i++) {
-        file >> line;
+      file >> line;
       if (file.fail() || line.length() != width) {
         throw runtime_error("Error reading map");
       }
@@ -78,4 +77,19 @@ string renderAnswer(Maze* maze, vector<Position*> solution) {
     delete[] output;
     throw e;
   }
+}
+
+void writeOutputToFile(const string& outputFileName, const string& outputFileContent) {
+
+    // Open the output file
+    ofstream outputFile(outputFileName);
+    if (!outputFile.is_open()) {
+        throw runtime_error("Failed to open output file: " + outputFileName);
+    }
+
+    // Write the rendered output to the file
+    outputFile << outputFileContent;
+
+    // Close the file
+    outputFile.close();
 }

@@ -7,7 +7,11 @@
 
 using namespace std;
 
-
+/**
+ * @brief Prompts the user for a search algorithm and validates the input
+ * @param input The search algorithm input from the user
+ * @return The validated search algorithm (either "BFS" or "DFS")
+ */
 string inputSearchAlg(string& input) {
     cin.get();
     while(input != "BFS" && input != "DFS") {
@@ -18,26 +22,38 @@ string inputSearchAlg(string& input) {
 }
 
 int main() {
-  cout << "Welcome to The A-Maze-ing Race." << endl;
-  string file;
-  cout << "where is your maze file? ";
-  cin >> file;
-//    string file = "example5.map";
-  // TODO: remove the file extension line in the mazeUtil
-  Maze* map = loadMap(file);
+  // const output string
+  string BAR = "\n-----------------------------------------------------\n";
 
+  cout << endl << "---------- Welcome to The A-Maze-ing Race! ----------" <<  endl << endl;
+  string file;
+  cout << "Write path to your maze file:";
+  cin >> file;
+
+  // load the input file
+  Maze* map = loadMap(file);
+  cout << BAR << endl << "Loading " << file << "..." << endl << BAR << endl;
+
+  // display for user search method input
   string search;
-  cout << "Which search algorithm to use (BFS or DFS)? ";
+  cout << "Choose a search algorithm:" << endl;
+  cout << "Breadth First Search ---- (BFS)" << endl;
+  cout << "Depth First Search ------ (DFS)" << endl;
+  cout << ">";
   cin >> search;
   search = inputSearchAlg(search);
 
-//  string outfile;
-//  cout << "What is the name of the output file?";
-//  cin >> outfile;
+  // get output file from user
+  string outfile;
+  cout << BAR <<  endl << "What is the name of the output file?";
+  cin >> outfile;
 
-  cout << "Loading " << file << "..." << endl;
+  // display the input map
+  cout << BAR << endl << "Input map:" << endl;
   map->displayMap();
+  cout << BAR;
 
+  // perform the search alg
   vector <Position*> solution;
   if(search == "BFS") {
       cout << endl << "Breadth First Searching..." << endl;
@@ -51,8 +67,18 @@ int main() {
       cout << "Invalid search input" << endl;
   }
 
-  cout << renderAnswer(map, solution) << endl;
+  // render the answer and get the solutions string for display
+  string outputMaze = renderAnswer(map, solution);
+
+  // output solution map
+  cout << outputMaze;
+  cout << endl << "----------------------" << endl;
   map->displayStats();
+  cout << "----------------------" << endl;
+
+  // output to file
+  writeOutputToFile(outfile, outputMaze);
+  cout << "Writen to " << outfile << BAR;
 
   return 0;
 }

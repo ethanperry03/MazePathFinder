@@ -230,7 +230,6 @@ void Maze::displayNeighbors(int x, int y) {
 }
 
 void Maze::displayMap() {
-    cout << this->width << " " << this->height << endl;
     for(int i = 0; i < this->height; i++) {
         for(int j = 0; j < this->width; j++) {
             if (positions[i][j]->isWall()) {
