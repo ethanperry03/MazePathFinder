@@ -22,6 +22,8 @@ using namespace std;
 Maze::Maze(int width, int height) {
     this->width = width;
     this->height = height;
+    this->nodesVisited = 0;
+    this->pathLength = 0;
 
     // Allocate memory for the 2D grid
     positions = new Position**[height]; // Rows (y)
@@ -95,6 +97,8 @@ vector<Position*> Maze::solveBreadthFirst() {
       //curr = queue.enqueue
       curr = toBeVisited.front();
       toBeVisited.pop();
+      // increase number of nodes visited
+      this->nodesVisited++;
       // if curr == destination (w, h)
       if(curr->to_string() == dest->to_string()) {
           // reverse built list of prev pointers
@@ -157,6 +161,8 @@ vector<Position*> Maze::solveDepthFirst() {
         //curr = queue.enqueue
         curr = toBeVisited.top();
         toBeVisited.pop();
+        // increase number of nodes visited
+        this->nodesVisited++;
         // if curr == destination (w, h)
         if(curr->to_string() == dest->to_string()) {
             // reverse built list of prev pointers
@@ -230,6 +236,11 @@ void Maze::displayMap() {
     }
 }
 
+void Maze::displayStats() {
+    cout << "Path Length: " << this->pathLength << endl;
+    cout << "# of Nodes Visited: " << this->nodesVisited << endl;
+}
+
 vector<Position*> Maze::buildPath(unordered_map<std::string, Position *>& visited, Position* dest) {
     vector<Position*> path;
     Position* curr = dest;
@@ -239,6 +250,8 @@ vector<Position*> Maze::buildPath(unordered_map<std::string, Position *>& visite
         path.push_back(curr);
         // update curr to point to the previous position from the dict
         curr = visited[curr->to_string()];
+        // increment path length
+        this->pathLength++;
     }
     path.push_back(curr);
 

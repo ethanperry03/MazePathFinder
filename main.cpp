@@ -31,9 +31,9 @@ int main() {
   cin >> search;
   search = inputSearchAlg(search);
 
-  string outfile;
-  cout << "What is the name of the output file?";
-  cin >> outfile;
+//  string outfile;
+//  cout << "What is the name of the output file?";
+//  cin >> outfile;
 
   cout << "Loading " << file << "..." << endl;
   map->displayMap();
@@ -52,6 +52,7 @@ int main() {
   }
 
   cout << renderAnswer(map, solution) << endl;
+  map->displayStats();
 
 
   // TODO: 1. write code to read in the map and handle potential errors 
@@ -59,6 +60,8 @@ int main() {
   //       3. call appropriate functions to solve the maze 
   //       4. display the solution path to the terminal 
   //       5. write the solution to the output file.
-  //       4. output the path length and # of visited nodes 
+  //       4. output the path length and # of visited nodes
+
+  // TODO: test a bit more, add stats to bottom output, fix input loop with new line, format output more
   return 0;
 }

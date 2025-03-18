@@ -71,6 +71,7 @@ public:
 
   void displayMap();
   void displayNeighbors(int, int);
+  void displayStats();
 
 protected:
   /**
@@ -102,6 +103,8 @@ protected:
 
   int width;
   int height;
+  int nodesVisited;
+  int pathLength;
 
 };
 
