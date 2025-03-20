@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <fstream>
 
 #include "maze.h"
 #include "mazeUtils.h"
@@ -21,14 +22,42 @@ string inputSearchAlg(string& input) {
     return input;
 }
 
+/**
+ * @brief Prompts the user for a file path and validates that the file exists
+ * 
+ * This function asks the user to input a file path, then checks if the file
+ * exists at that location. If the file doesn't exist, it continues to prompt
+ * the user until a valid file path is entered.
+ * 
+ * @return A string containing a valid file path that exists in the filesystem
+ */
+string getValidFilePath() {
+    string filePath;
+    bool fileExists = false;
+    
+    while (!fileExists) {
+        cout << "Write path to your maze file: ";
+        cin >> filePath;
+        
+        // Check if file exists by attempting to open it
+        ifstream fileCheck(filePath);
+        if (fileCheck.good()) {
+            fileExists = true;
+            fileCheck.close();
+        } else {
+            cout << "Error: File '" << filePath << "' not found. Please enter a valid file path." << endl << endl;
+        }
+    }
+    
+    return filePath;
+}
+
 int main() {
   // const output string
   string BAR = "\n-----------------------------------------------------\n";
 
   cout << endl << "---------- Welcome to The A-Maze-ing Race! ----------" <<  endl << endl;
-  string file;
-  cout << "Write path to your maze file:";
-  cin >> file;
+  string file = getValidFilePath();
 
   // load the input file
   Maze* map = loadMap(file);
