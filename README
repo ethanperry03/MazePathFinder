@@ -1,0 +1,100 @@
+Author
+Ethan Perry
+
+A-Maze-ing Race | Project 2:
+A maze solving program that uses both Breadth-First Search (BFS) and Depth-First Search (DFS) algorithms to navigate through mazes.
+
+Description:
+This program reads maze maps from files, allows users to choose between BFS and DFS search algorithms, and outputs the solution path both to the console and to a file. The project demonstrates the implementation of graph traversal algorithms in a practical application.
+
+Files and Directories:
+main.cpp: Entry point of the program with user interface
+maze.h/cpp: Maze class definition and implementation for maze representation and solving
+position.h/cpp: Position class for tracking coordinates within the maze
+mazeUtils.h/cpp: Utility functions for maze operations like loading and rendering
+maps: Directory containing sample maze files and their solutions
+
+Getting Started:
+
+Dependencies:
+C++11 or higher
+G++ compiler or equivalent
+
+Compile the program using g++:
+g++ -o maze_solver main.cpp maze.cpp position.cpp mazeUtils.cpp -std=c++11
+
+Run the compiled executable:
+./maze_solver
+
+Follow the prompts to:
+
+- Enter a maze file path (e.g., maps/maze1.map)
+- Choose a search algorithm (BFS or DFS)
+- Specify an output file name for the solution
+
+Example session:
+---------- Welcome to The A-Maze-ing Race! ----------
+
+Write path to your maze file: maps/maze1.map
+
+---
+
+Loading maps/maze1.map...
+
+---
+
+Choose a search algorithm:
+Breadth First Search ---- (BFS)
+Depth First Search ------ (DFS)
+
+> BFS
+
+---
+
+What is the name of the output file? solution.txt
+
+---
+
+Input map:
+[Maze is displayed here]
+
+---
+
+Breadth First Searching...
+[Solution is displayed here]
+
+---
+
+Path Length: 15
+
+# of Nodes Visited: 24
+
+---
+
+## Written to solution.txt
+
+Maze files should follow this format:
+First line: Width and height of the maze separated by a space
+Subsequent lines: The maze itself, where:
+'#' represents walls
+'.' represents open paths
+The top-left corner (0,0) is the start
+The bottom-right corner is the goal
+Example:
+5 5
+
+#####
+
+#...#
+#.#.#
+#...#
+
+#####
+
+Algorithm Comparison
+BFS (Breadth-First Search): Guarantees the shortest path but may explore more nodes
+DFS (Depth-First Search): More memory efficient but doesn't guarantee the shortest path
+
+I have abided by the Wheaton College Honor Code in this work.
+
+- Ethan Perry
