@@ -95,6 +95,20 @@ Algorithm Comparison
 BFS (Breadth-First Search): Guarantees the shortest path but may explore more nodes
 DFS (Depth-First Search): More memory efficient but doesn't guarantee the shortest path
 
+Version History:
+$ git log --pretty=format:"%h - %an, %ar : %s"
+215e31e - Ethan Perry, 83 seconds ago : Add README documentation file
+f9911ad - Ethan Perry, 7 minutes ago : feat(file input): allow user to input file names until a correct one is given to ensure smooth user experience
+e0a6f4b - Ethan Perry, 2 days ago : Format output display
+e2e34df - Ethan Perry, 2 days ago : Add documentation to .h files
+f99ffe1 - Ethan Perry, 2 days ago : feat(maze) - add statistics tracking for path length and nodes visited, implement displayStats function
+6e62c6b - Ethan Perry, 8 days ago : Update .gitignore
+d76c01c - Ethan Perry, 8 days ago : Update .gitignore
+21ba6d3 - Ethan Perry, 8 days ago : feat(BFS and DFS) - implement both BFS and DFS to maze class, tested code with sample input, and passed the test file
+cbbd3c4 - Ethan Perry, 8 days ago : feat(maze) - implemented the maze and position classes. Added small functions to aid with debugging and ensure information was correctly read in
+af5e06f - Ethan Perry, 12 days ago : Remove cached files from staging area
+cb2f8ea - Ethan Perry, 12 days ago : Initial Commit
+
 I have abided by the Wheaton College Honor Code in this work.
 
 - Ethan Perry

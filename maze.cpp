@@ -15,7 +15,7 @@
  */
 
 #include "maze.h"
-//#include "myDictionary.h"
+#include "myDictionary.h"
 
 using namespace std;
 
@@ -63,14 +63,14 @@ void Maze::setWall(int x, int y) {
 
 vector<Position*> Maze::solveBreadthFirst() {
   // declare unordered map to hash visited nodes
-  unordered_map<string, Position*> visited;
+  MyDictionary visited;
   // queue of nodes to be visited
   queue<Position*> toBeVisited;
   // vector storing the path to be taken
   vector<Position*> path;
 
   //  mark starting node (0,0) as visited in the dict and make value itself
-  visited.insert({positions[0][0]->to_string(), positions[0][0]});
+  visited.insert(positions[0][0]->to_string(), positions[0][0]);
 
   //  add start to the queue of to be visited
   toBeVisited.push(positions[0][0]);
@@ -106,9 +106,9 @@ vector<Position*> Maze::solveBreadthFirst() {
           for(Position* neighbor: neighbors) {
               key = neighbor->to_string();
               // if neighbor has not been visited before
-              if(visited.find(key) == visited.end()) {
+              if(visited.isUnique(key)) {
                   // insert neighbor into dict and make curr as it's previous
-                  visited.insert({key, curr});
+                  visited.insert(key, curr);
                   // add the neighbor to the queue
                   toBeVisited.push(neighbor);
               }
@@ -121,14 +121,14 @@ vector<Position*> Maze::solveBreadthFirst() {
 
 vector<Position*> Maze::solveDepthFirst() {
     // declare unordered map to hash visited nodes
-    unordered_map<string, Position*> visited;
+    MyDictionary visited;
     // queue of nodes to be visited
     stack<Position*> toBeVisited;
     // vector storing the path to be taken
     vector<Position*> path;
 
     //  mark starting node (0,0) as visited in the dict and make value itself
-    visited.insert({positions[0][0]->to_string(), positions[0][0]});
+    visited.insert(positions[0][0]->to_string(), positions[0][0]);
 
     //  add start to the queue of to be visited
     toBeVisited.push(positions[0][0]);
@@ -164,9 +164,9 @@ vector<Position*> Maze::solveDepthFirst() {
             for(Position* neighbor: neighbors) {
                 key = neighbor->to_string();
                 // if neighbor has not been visited before
-                if(visited.find(key) == visited.end()) {
+                if(visited.isUnique(key)) {
                     // insert neighbor into dict and make curr as it's previous
-                    visited.insert({key, curr});
+                    visited.insert(key, curr);
                     // add the neighbor to the queue
                     toBeVisited.push(neighbor);
                 }
@@ -177,7 +177,7 @@ vector<Position*> Maze::solveDepthFirst() {
     return vector<Position*>();
 }
 
-vector<Position*> Maze::buildPath(unordered_map<std::string, Position *>& visited, Position* dest) {
+vector<Position*> Maze::buildPath(MyDictionary& visited, Position* dest) {
     vector<Position*> path;
     Position* curr = dest;
 

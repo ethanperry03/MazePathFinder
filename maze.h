@@ -2,6 +2,7 @@
 #define PRGASST02_MAZE_H
 
 #include "position.h"
+#include "myDictionary.h"
 #include <vector>
 #include <unordered_map>
 
@@ -117,7 +118,7 @@ protected:
    * @param dest Pointer to the destination Position
    * @return A vector of Position pointers representing the path from start to destination
    */
-  vector<Position*> buildPath(unordered_map<string, Position*>&, Position*);
+  vector<Position*> buildPath(MyDictionary&, Position*);
 
   /** The width and height of this maze. */
   int width;
