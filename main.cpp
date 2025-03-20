@@ -1,3 +1,9 @@
+/** Assignment 2: A-maze-ing Race
+ * Ethan Perry
+ * Sun. March 23rd, 2025
+ * Implement BFS/DFS with additional data structures
+ * I have abided by the Wheaton College Honor code in this work. -Ethan Perry
+ */
 #include <iostream>
 #include <string>
 #include <utility>
