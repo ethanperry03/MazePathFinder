@@ -12,6 +12,7 @@ main.cpp: Entry point of the program with user interface
 maze.h/cpp: Maze class definition and implementation for maze representation and solving
 position.h/cpp: Position class for tracking coordinates within the maze
 mazeUtils.h/cpp: Utility functions for maze operations like loading and rendering
+myDictionary.h: Encapsulated class with unordered_map stl as underlying conatiner
 maps: Directory containing sample maze files and their solutions
 
 Getting Started:
@@ -21,7 +22,7 @@ C++11 or higher
 G++ compiler or equivalent
 
 Compile the program using g++:
-g++ -o maze_solver main.cpp maze.cpp position.cpp mazeUtils.cpp -std=c++11
+g++ -o maze_solver main.cpp maze.cpp position.cpp mazeUtils.cpp myDictionary.h -std=c++11
 
 Run the compiled executable:
 ./maze_solver
@@ -97,8 +98,9 @@ DFS (Depth-First Search): More memory efficient but doesn't guarantee the shorte
 
 Version History:
 $ git log --pretty=format:"%h - %an, %ar : %s"
-215e31e - Ethan Perry, 83 seconds ago : Add README documentation file
-f9911ad - Ethan Perry, 7 minutes ago : feat(file input): allow user to input file names until a correct one is given to ensure smooth user experience
+daa218c - Ethan Perry, 45 minutes ago : feat(myDictionary) - implement class for encapsulated dictionary
+215e31e - Ethan Perry, 4 hours ago : Add README documentation file
+f9911ad - Ethan Perry, 4 hours ago : feat(file input): allow user to input file names until a correct one is given to ensure smooth user experience
 e0a6f4b - Ethan Perry, 2 days ago : Format output display
 e2e34df - Ethan Perry, 2 days ago : Add documentation to .h files
 f99ffe1 - Ethan Perry, 2 days ago : feat(maze) - add statistics tracking for path length and nodes visited, implement displayStats function
@@ -110,5 +112,4 @@ af5e06f - Ethan Perry, 12 days ago : Remove cached files from staging area
 cb2f8ea - Ethan Perry, 12 days ago : Initial Commit
 
 I have abided by the Wheaton College Honor Code in this work.
-
 - Ethan Perry
